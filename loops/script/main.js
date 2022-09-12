@@ -61,4 +61,79 @@ function sumOfNumbers(fromNumber, toNumber) {
 
 console.log(sumOfNumbers(2, 6));
 
+// Task 3
+
+function commandDivider(numberOne, numberTwo) {
+    let result = 1;
+    if (numberOne !== numberTwo) {
+
+        let minNumber = numberOne < numberTwo ? numberOne : numberTwo;
+
+
+        // if (numberOne < numberTwo){
+        //     minNumber = numberOne;
+        // } else {
+        //     minNumber = numberTwo;
+        // }
+
+        for (let i = minNumber; i > 1; i--) {
+            if (numberOne % i === 0 && numberTwo % i === 0) {
+                result = i;
+                break;
+            }
+
+        }
+    } else {
+        result = numberOne;
+    }
+    return result;
+}
+
+console.log(commandDivider(4, 8));
+console.log(commandDivider(6, 8));
+console.log(commandDivider(8, 8));
+
+// Task 5
+
+function allDividers(number) {
+    let result = [1];
+
+    for (let i = 2; i <= number; i++) {
+        if (number % i === 0) {
+            result.push(i);
+        }
+    }
+
+    return result;
+}
+
+let array = allDividers(10);
+console.log(array);
+
+// Task 6
+
+function reverseNumber(number) {
+    let reverseNumber = "";
+    let initialNumberLength = String(number).length;
+
+    for (let i = 0; i < initialNumberLength; i++) {
+        reverseNumber += number % 10;
+        number = Math.trunc(number / 10);
+    }
+    return Number(reverseNumber);
+}
+
+function palindrome (number) {
+    let result = false;
+
+    if (String(number).length === 5 && number === reverseNumber(number)) {
+        result = true;
+    }
+
+    return result;
+}
+let numberPali1 = 54372;
+console.log("Number " + numberPali1 + " is palindrome - " + palindrome(numberPali1));
+let numberPali2 = 54345;
+console.log(palindrome(numberPali2));
 
