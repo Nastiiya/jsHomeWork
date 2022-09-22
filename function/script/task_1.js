@@ -20,6 +20,8 @@ console.log(concatedString);
 
 //Option 3 (arrow function)
 let isBiggerThanZero = (number) => {return number>0;}
+let isBiggerThanZero1 = function (number) {return number>0;}
+
 let sumNumber = (number1, number2) => {return number1 + number2;}
 
 console.log(isBiggerThanZero(2));
