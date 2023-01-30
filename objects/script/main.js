@@ -19,11 +19,11 @@ person2.print();
 
 //Example 2
 
-function Person(firstName, lastName, age){
+function Person(firstName, lastName, age) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
-    this.print = function (){
+    this.print = function () {
         console.log(`I am ${this.firstName} ${this.lastName}`);
     };
 }
@@ -33,7 +33,6 @@ let nastia = new Person("Nast", "Vov", 30);
 
 stas.print();
 nastia.print();
-
 
 
 // Task 1
@@ -57,7 +56,7 @@ const car = {
     addDriver: function (driverName) {
         let added = false;
 
-        if (!this.isDriverInList("Nastya")) {
+        if (!this.isDriverInList(driverName)) {
             this.drivers.push(driverName);
             added = true;
         }
@@ -69,9 +68,7 @@ const car = {
     },
 
     getTimeForDistance: function (distance) {
-        let time;
-        time = distance / this.avgSpeed;
-        return time;
+        return distance / this.avgSpeed;
     }
 }
 
@@ -106,19 +103,18 @@ const time = {
         let localMin = this.min;
         let localHours = this.hours;
 
-        if (localSec < 10){
+        if (localSec < 10) {
             localSec = "0" + localSec;
         }
 
-        if (localMin < 10){
+        if (localMin < 10) {
             localMin = "0" + localMin;
         }
 
-        if (localHours < 10){
+        if (localHours < 10) {
             localHours = "0" + localHours;
         }
 
-        // console.log("current time is " + localHours + ":" + localMin + ":" + localSec);
         console.log(`current time is ${localHours}:${localMin}:${localSec}`);
     },
     addSec: function (seconds) {
@@ -151,4 +147,99 @@ time.addHours(23);
 time.printTime();
 
 
+//Task 2
 
+let menu = {
+    _items: [],
+
+    addItem(meailName, price) {
+        let isFound = false;
+        for (let i = 0; i < this._items.length; i++) {
+            if (this._items[i].meailName === meailName) {
+                this._items[i].price = price;
+                isFound = true;
+                break;
+            }
+        }
+
+        if (!isFound) {
+            this._items.push({meailName, price})
+        }
+    },
+
+    set todaysSpecial(mealName) {
+        let isFound = false;
+
+        for (let i = 0; i < this._items.length; i++) {
+            if (this._items[i].meailName === mealName) {
+                this._todaysSpecial = this._items[i];
+                isFound = true;
+                break;
+            }
+        }
+
+        if (!isFound) {
+            console.log(`Menu item ${mealName} not found`);
+        }
+    },
+
+    get todaysSpecial() {
+        return this._todaysSpecial;
+    }
+}
+
+menu.addItem("Pasta", 10);
+menu.addItem("Eggs", 5);
+menu.addItem("Wuffles", 4);
+menu.todaysSpecial = "Eggs"
+console.log(menu.todaysSpecial);
+
+//Task 3
+
+const team = {
+    _players: [],
+    _games: [],
+
+    get players() {
+        return this._players;
+    },
+
+    get games() {
+        return this._games;
+    },
+
+    addPlayter(firstName, lastName, age) {
+        this.players.push({firstName, lastName, age});
+    },
+
+    addGame(opponent, teamPoints, opponentPoints) {
+        this.games.push({opponent, teamPoints, opponentPoints});
+    },
+
+    printPlayers() {
+        for (let i = 0; i < this.players.length; i++) {
+            console.log(`Player #${i + 1} - ${this.players[i].lastName} ${this.players[i].firstName}. He/she is year old ${this.players[i].age}`);
+        }
+    },
+
+    printGames() {
+        for (let i = 0; i < this.games.length; i++) {
+            if (this.games[i].teamPoints > this.games[i].opponentPoints) {
+                console.log(`${this.games[i].opponent} is sucks`)
+            } else {
+                console.log(`The judge sucks`)
+            }
+        }
+    }
+}
+
+team.addPlayter("Stas", "Paf", 39);
+team.addPlayter("Yura", "Kov", 36);
+team.addPlayter("Nastia", "Vov", 30);
+
+
+team.addGame("Zhilyanska", 12, 0);
+team.addGame("LT", 100, 1);
+
+team.printPlayers();
+team.printGames();
